@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 20:02:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/20 13:11:48 by ajordan-         ###   ########.fr       */
+/*   Created: 2021/08/09 13:02:13 by ajordan-          #+#    #+#             */
+/*   Updated: 2021/10/19 13:34:14 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+/*
+*	DESCRIPTION
+*	Returns the last element of the list.
+*	PARAMETERS
+*	#1. The beginning of the list.
+*	RETURN VALUES
+*	Last element of the list.
+*/
 
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <signal.h>
+#include "libft.h"
 
-#endif
+t_list	*ft_lstlast(t_list *lst)
+{
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}

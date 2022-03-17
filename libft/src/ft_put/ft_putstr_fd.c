@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 20:02:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/20 13:11:48 by ajordan-         ###   ########.fr       */
+/*   Created: 2021/08/02 12:47:43 by ajordan-          #+#    #+#             */
+/*   Updated: 2021/10/19 14:26:13 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+/*
+*	DESCRIPTION
+*	Outputs the string ’s’ to the given file descriptor.
+*	PARAMETERS
+*	#1. The string to output.
+*	#2. The file descriptor on which to write.
+*	RETURN VALUES
+*	-
+*/
 
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <signal.h>
+#include "libft.h"
 
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (s != 0)
+	{	
+		while (s[i])
+		{	
+			write(fd, &s[i], 1);
+			i++;
+		}
+	}
+}

@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 20:02:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/20 13:11:48 by ajordan-         ###   ########.fr       */
+/*   Created: 2021/08/02 12:40:20 by ajordan-          #+#    #+#             */
+/*   Updated: 2021/10/19 14:24:04 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+/*
+*	DESCRIPTION
+*	Outputs the character ’c’ to the given file descriptor.
+*	PARAMETERS
+*	#1. The character to output.
+*	#2. The file descriptor on which to write.
+*	RETURN VALUES
+*	-
+*/
 
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <signal.h>
+#include "libft.h"
 
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

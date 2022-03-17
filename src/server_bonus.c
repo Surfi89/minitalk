@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 16:20:47 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/19 21:10:14 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/20 14:13:01 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_handler(int signal, siginfo_t *info, void *s)
 	bit++;
 	if (bit == 8)
 	{
-		ft_putchar_fd(i, 1);
+		ft_printf("%c", i);
 		bit = 0;
 		i = 0;
 		kill(info->si_pid, SIGUSR2);
@@ -39,14 +39,13 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc != 1)
 	{
-		ft_putstr_fd("\033[91mError: wrong format.\033[0m\n", 1);
-		ft_putstr_fd("\033[33mTry: ./server_bonus\033[0m\n", 1);
+		ft_printf("\033[91mError: wrong format.\033[0m\n");
+		ft_printf("\033[33mTry: ./server\033[0m\n");
 		return (0);
 	}
 	pid = getpid();
-	ft_putstr_fd("\033[94mPID\033[0m \033[96m-> \033[0m", 1);
-	ft_putnbr_fd(pid, 1);
-	ft_putstr_fd("\n\033[90mWaiting for a message...\033[0m\n", 1);
+	ft_printf("\033[94mPID\033[0m \033[96m->\033[0m %d\n", pid);
+	ft_printf("\033[90mWaiting for a message...\033[0m\n");
 	sig.sa_sigaction = ft_handler;
 	sigemptyset(&sig.sa_mask);
 	sig.sa_flags = 0;

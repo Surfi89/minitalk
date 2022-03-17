@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 16:20:30 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/19 21:08:12 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/02/20 14:14:35 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	ft_confirm(int signal)
 {
 	if (signal == SIGUSR1)
-		ft_putstr_fd("\033[0;32mQSL!\033[0;32m\n", 1);
+		ft_printf("\033[0;32mQSL!\033[0;32m\n", 1);
 	else
-		ft_putstr_fd("\033[0;32mQSL!\033[0;32m\n", 1);
+		ft_printf("\033[0;32mQSL!\033[0;32m\n", 1);
 }
 
 void	ft_send_bits(int pid, char i)
@@ -56,8 +56,8 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr_fd("\033[91mError: wrong format.\033[0m\n", 1);
-		ft_putstr_fd("\033[33mTry: ./client_bonus [PID] [MESSAGE]\033[0m\n", 1);
+		ft_printf("\033[91mError: wrong format.\033[0m\n");
+		ft_printf("\033[33mTry: ./client_bonus [PID] [MESSAGE]\033[0m\n");
 		return (1);
 	}
 	return (0);

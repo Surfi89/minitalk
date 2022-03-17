@@ -6,7 +6,7 @@
 #    By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/19 15:23:08 by ajordan-          #+#    #+#              #
-#    Updated: 2022/02/19 20:09:30 by ajordan-         ###   ########.fr        #
+#    Updated: 2022/02/20 13:24:50 by ajordan-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,13 @@ NAME		= client
 NAMESV		= server
 NAMEBC		= client_bonus
 NAMEBS		= server_bonus
+LIBFT		= libft
 INC		= inc
 HEADER		= -I inc
 SRC_DIR		= src/
 OBJ_DIR		= obj/
 CC		= gcc
-CFLAGS		= -Wall -Werror -Wextra
+FLAGS		= -Wall -Werror -Wextra
 FSANITIZE	= -fsanitize=address -g3
 RM		= rm -f
 ECHO		= echo -e
@@ -39,7 +40,6 @@ WHITE		=	\033[0;97m
 
 SRCCL_FILES	=	client
 SRCSV_FILES	=	server
-COMM_FILES	=	utils
 SRCBC_FILES	=	client_bonus
 SRCBS_FILES	=	server_bonus
 
@@ -48,9 +48,6 @@ OBJCL 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCCL_FILES)))
 
 SRCSV 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCSV_FILES)))
 OBJSV 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCSV_FILES)))
-
-COMM_SRC	= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(COMM_FILES)))
-COMM_OBJ 	= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(COMM_FILES)))
 
 SRCBC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRCBC_FILES)))
 OBJBC 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCBC_FILES)))
@@ -63,58 +60,63 @@ OBJBS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCBS_FILES)))
 OBJF		=	.cache_exists
 
 start:
+			@make -C $(LIBFT)
+			@cp $(LIBFT)/libft.a .
 			@$(ECHO) -n "$(YELLOW)[Dependencies]:\t$(DEF_COLOR)"
 			@$(ECHO) -n "$(RED)[$(DEF_COLOR)"
 			@make all
 
 all:		$(NAME) $(NAMESV)
 
-$(NAME):	$(OBJCL) $(COMM_OBJ) $(OBJF)
-			@$(CC) $(CFLAGS) $(OBJCL) $(COMM_OBJ) $(HEADER) -o $(NAME)
+$(NAME):	$(OBJCL) $(OBJF)
+			@$(CC) $(FLAGS) $(OBJCL) $(HEADER) libft.a -o $(NAME)
 
-$(NAMESV):	$(OBJSV) $(COMM_OBJ) $(OBJF)
+$(NAMESV):	$(OBJSV) $(OBJF)
 			@$(ECHO) -n "$(RED)]$(DEF_COLOR)"
 			@$(ECHO) -n "$(GREEN) => 100%$(DEF_COLOR)\n"
 			@$(ECHO) -n "$(YELLOW)[minitalk]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(OBJSV) $(COMM_OBJ) $(HEADER) -o $(NAMESV)
+			@$(CC) $(FLAGS) $(OBJSV) $(HEADER) libft.a -o $(NAMESV)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(OBJF)
 			@$(ECHO) -n "$(ORANGE)=$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+			@$(CC) $(FLAGS) $(HEADER) -c $< -o $@
 
 $(OBJF):
 			@mkdir -p $(OBJ_DIR)
 			@touch $(OBJF)
 
 bonus:
+			@make -C $(LIBFT)
+			@cp $(LIBFT)/libft.a .
 			@$(ECHO) -n "$(YELLOW)[Dependencies]:\t$(DEF_COLOR)"
 			@$(ECHO) -n "$(RED)[$(DEF_COLOR)"
 			@make allbonus
 
 allbonus:		$(NAMEBC) $(NAMEBS)
 
-$(NAMEBC):	$(OBJBC) $(COMM_OBJ) $(OBJF)
-			@$(CC) $(CFLAGS) $(OBJBC) $(COMM_OBJ) $(HEADER) -o $(NAMEBC)
+$(NAMEBC):	$(OBJBC) $(OBJF)
+			@$(CC) $(FLAGS) $(OBJBC) $(HEADER) libft.a -o $(NAMEBC)
 
-$(NAMEBS):	$(OBJBS) $(COMM_OBJ) $(OBJF)
+$(NAMEBS):	$(OBJBS) $(OBJF)
 			@$(ECHO) -n "$(RED)]$(DEF_COLOR)"
 			@$(ECHO) -n "$(GREEN) => 100%$(DEF_COLOR)\n"
 			@$(ECHO) -n "$(YELLOW)[minitalk_bonus]:\t$(DEF_COLOR)"
-			@$(CC) $(CFLAGS) $(OBJBS) $(COMM_OBJ) $(HEADER) -o $(NAMEBS)
+			@$(CC) $(FLAGS) $(OBJBS) $(HEADER) libft.a -o $(NAMEBS)
 			@$(ECHO) "$(GREEN) => Success!$(DEF_COLOR)"
 
 clean:
 			@$(RM) -r $(OBJ_DIR)
 			@$(RM) $(OBJF)
+			@make clean -C $(LIBFT)
 			@$(ECHO) -n "$(BLUE)[minitalk]:\tobject files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 
 fclean:		clean
-			@$(RM) $(NAME)
-			@$(RM) $(NAMESV)
-			@$(RM) $(NAMEBC)
-			@$(RM) $(NAMEBS)
+			@$(RM) $(NAME) $(NAMESV) $(NAMEBC) $(NAMEBS)
+			@$(RM) $(LIBFT)/libft.a
+			@$(RM) libft.a
 			@find . -name ".DS_Store" -delete
+			@$(ECHO) -n "$(CYAN)[LIBFT]:\texec. files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 			@$(ECHO) -n "$(CYAN)[minitalk]:\texec. files$(DEF_COLOR)$(GREEN)  => Cleaned!$(DEF_COLOR)\n"
 
 

@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 20:02:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/20 13:11:48 by ajordan-         ###   ########.fr       */
+/*   Created: 2021/08/09 12:16:27 by ajordan-          #+#    #+#             */
+/*   Updated: 2021/10/19 13:31:03 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+/*
+*	DESCRIPTION
+*	Adds the element ’new’ at the beginning of the list.
+*	PARAMETERS
+*	#1. The address of a pointer to the first link of a list.
+*	#2. The address of a pointer to the element to be added to the list.
+*	RETURN VALUES
+*	-
+*/
 
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <signal.h>
+#include "libft.h"
 
-#endif
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (new)
+	{	
+		if (!lst)
+			*lst = new;
+		new->next = *lst;
+		*lst = new;
+	}
+}

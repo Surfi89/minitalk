@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/19 20:02:59 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/20 13:11:48 by ajordan-         ###   ########.fr       */
+/*   Created: 2021/07/19 12:50:30 by ajordan-          #+#    #+#             */
+/*   Updated: 2021/10/19 13:26:57 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+/*
+*	LIBRARY
+*	#include <ctype.h>
+*	DESCRIPTION
+*	The isdigit() function tests for a decimal digit character.
+*	PARAMETERS
+*	#1. The character to test.
+*	RETURN VALUES
+*	The isdigit() function returns zero if the character tests false and 
+*	returns non-zero if the character tests true.
+*/
 
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
-# include <signal.h>
+#include "libft.h"
 
-#endif
+int	ft_isdigit(int c)
+{
+	if ((c < '0') || (c > '9'))
+		return (0);
+	return (1);
+}
