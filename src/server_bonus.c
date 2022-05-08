@@ -6,7 +6,7 @@
 /*   By: ajordan- <ajordan-@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 16:20:47 by ajordan-          #+#    #+#             */
-/*   Updated: 2022/02/20 14:13:01 by ajordan-         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:48:35 by ajordan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_handler(int signal, siginfo_t *info, void *s)
 
 int	main(int argc, char **argv)
 {
-	int	pid;
+	int					pid;
 	struct sigaction	sig;
 
 	(void)argv;
